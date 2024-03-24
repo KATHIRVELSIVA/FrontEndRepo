@@ -11,10 +11,13 @@ export function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(values);
         axios.post('https://localhost:44319/api/GetKey', values)
             .then(res => {
                 Cookies.set("UserID", res.data);
+            })
+        axios.post('https://localhost:44319/api/GetUserDetails', values)
+            .then(res => {
+                Cookies.set("UserName", res.data.userName);
             })
         axios.post('https://localhost:44319/api/Login', values)
             .then(res => {
@@ -23,7 +26,7 @@ export function Login() {
                         alert("User Logged in successfully..");
                         Cookies.set("email", values.email);
                         Cookies.set("password", values.password);
-                        navigate('/dashboard'); 
+                        navigate('/dashboard');
                         window.location.reload();
                     }
                     else {

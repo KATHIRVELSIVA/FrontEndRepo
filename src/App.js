@@ -1,5 +1,4 @@
 import './App.css';
-import { useNavigate } from "react-router-dom";
 import { Policy } from './components/policy/Policy';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,6 +11,9 @@ import { Vehicle } from './components/dashboard/Vehicle';
 import { VehicleUpdate } from './components/Vehicle/VehicleUpdate';
 import { VehicleDelete } from './components/Vehicle/VehicleDelete';
 import { Car } from './components/Vehicle/car/car';
+import PdfUploader from './components/pdfuploader/PdfUploader';
+import PdfDownloader from './components/pdfuploader/PdfDownloader';
+import { InsuranceApply } from './components/insuranceapply/InsuranceApply';
 
 function App() {
 
@@ -20,6 +22,7 @@ function App() {
     Cookies.remove("password");
     Cookies.remove("UserID");
     Cookies.remove("vehicleId");
+    Cookies.remove("UserData");
     window.location.reload();
   };
   const cookieCheck = Cookies.get("email");
@@ -27,7 +30,9 @@ function App() {
     return (
       <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="home">GIS</a>
+          <a className="navbar-brand" href="dashboard">
+            <i class="bi bi-person-circle h1"></i>
+          </a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -48,15 +53,15 @@ function App() {
                   <a className="dropdown-item" href="about">About</a>
                 </div>
               </li>
-              <li className='navbar-nav mr-auto text-center'>
-                <div className='navbar-nav mr-auto text-center'>
-                  <button type="button" className="btn btn-sm btn-outline-danger mr-3" onClick={logOutFromDashBoard}>Logout</button>
-                  <Car />
-                </div>
-              </li>
             </ul>
+            <span className='navbar-text'>
+              <button type="button" className="btn btn-sm btn-outline-danger mr-3 float-right" onClick={logOutFromDashBoard}>Logout</button>
+            </span>
+
           </div>
         </nav>
+
+
         <BrowserRouter>
           <Routes>
             <Route path='/policy' element={<Policy />}></Route>
@@ -67,8 +72,12 @@ function App() {
             <Route path='/addVehicle' element={<Vehicle />}></Route>
             <Route path='/vehicleupdate/:id' element={<VehicleUpdate />}></Route>
             <Route path='/vehicledelete/:id' element={<VehicleDelete />}></Route>
+            <Route path='/pdfUpload' element={<PdfUploader />}></Route>
+            <Route path='/pdfDownload' element={<PdfDownloader />}></Route>
+            <Route path='/applypolicy/:id' element={<InsuranceApply />}></Route>
           </Routes>
         </BrowserRouter>
+        <marquee direction="right"><Car /></marquee>
       </>
     );
   }
@@ -99,6 +108,7 @@ function App() {
             <Route path='/add-on-policy' element={<AddOnPolicy />}></Route>
             <Route path='/home' element={<Home />}></Route>
             <Route path='/sign-up' element={<SignUp />}></Route>
+
           </Routes>
         </BrowserRouter>
       </>

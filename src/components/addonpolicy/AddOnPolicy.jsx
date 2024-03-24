@@ -13,7 +13,6 @@ export function AddOnPolicy() {
             <table className="table table-hover">
                 <thead>
                     <tr>
-                        <th>Add On Policy ID</th>
                         <th>Add On Policy Name</th>
                         <th>Add On Policy Description</th>
                         <th>Add On Policy Price</th>
@@ -21,14 +20,15 @@ export function AddOnPolicy() {
                 </thead>
                 <tbody>
                     {
-                        data.map((d, i) => (
-                            <tr key={i}>
-                                <td>{d.addOnPolicyID}</td>
-                                <td>{d.addOnPolicyName}</td>
-                                <td>{d.addOnPolicyDescription}</td>
-                                <td>{d.addOnPrice}</td>
-                            </tr>
-                        ))
+                        data
+                            .filter((item) => item.addOnPolicyName !== "None")
+                            .map((d, i) => (
+                                <tr key={i}>
+                                    <td>{d.addOnPolicyName}</td>
+                                    <td>{d.addOnPolicyDescription}</td>
+                                    <td>{d.addOnPrice}</td>
+                                </tr>
+                            ))
                     }
                 </tbody>
             </table>

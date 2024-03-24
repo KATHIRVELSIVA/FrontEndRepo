@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 export function VehicleUpdate() {
-    const [values, setValues] = useState({})
+    const [values, setValues] = useState({
+        userID: Cookies.get("UserID")
+    })
     const navigate = useNavigate();
     const { id } = useParams();
 
@@ -30,11 +33,11 @@ export function VehicleUpdate() {
             <form className="card container mt-1 p-5 text-uppercase" onSubmit={handleSubmit} >
                 <h3 className="text-center">Update your vehicle</h3>
 
-                <div className="mb-3">
+                <div className="mb-3 " >
                     <label>Vehicle Number</label>
                     <input
-                        type="text"
-                        className="form-control"
+                        type="text "
+                        className="form-control text-uppercase"
                         placeholder="AB XX CD XXXX"
                         required
                         value={values.vehicleNo}
@@ -101,7 +104,7 @@ export function VehicleUpdate() {
                     />
                 </div>
 
-                <div className="mb-3">
+                {/* <div className="mb-3">
                     <label>User ID</label>
                     <input
                         type="text"
@@ -110,7 +113,7 @@ export function VehicleUpdate() {
                         value={id}
                         onChange={e => setValues({ ...values, userID: e.target.value })}
                     />
-                </div>
+                </div> */}
 
 
                 <div className="d-grid">

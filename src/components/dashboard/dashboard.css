@@ -122,3 +122,20 @@
     outline: none;
     cursor: pointer;
 }
+
+.card {
+    width: 20vw;
+}
+
+#SuperProducts {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+}
+
+.centerpage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
