@@ -1,10 +1,9 @@
 import React from "react";
 import axios from 'axios';
-import Cookies from "js-cookie";
 const PdfDownloader = () => {
     const handleDownlad = async () => {
         try {
-            const response = await axios.get('https://localhost:44319/api/PdfDocument/' + Cookies.get('UserID'),
+            const response = await axios.get('https://localhost:44319/api/PdfDocument/' + 2,
                 {
                     responseType: 'blob'
                 });

@@ -13,7 +13,6 @@ export function Policy() {
             <table className="table table-hover">
                 <thead>
                     <tr>
-                        <th>Policy ID</th>
                         <th>Policy Name</th>
                         <th>Policy Description</th>
                         <th>Policy Price</th>
@@ -23,7 +22,6 @@ export function Policy() {
                     {
                         data.map((d, i) => (
                             <tr key={i}>
-                                <td>{d.policyID}</td>
                                 <td>{d.policyName}</td>
                                 <td>{d.policyDescription}</td>
                                 <td>{d.policyPrice}</td>

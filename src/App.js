@@ -14,6 +14,10 @@ import { Car } from './components/Vehicle/car/car';
 import PdfUploader from './components/pdfuploader/PdfUploader';
 import PdfDownloader from './components/pdfuploader/PdfDownloader';
 import { InsuranceApply } from './components/insuranceapply/InsuranceApply';
+import { ViewInsurance } from './components/insuranceapply/ViewInsurance';
+import { Admin } from './components/admin/Admin';
+import { UserList } from './components/admin/UserList';
+import { VehicleList } from './components/admin/VehicleList';
 
 function App() {
 
@@ -23,10 +27,53 @@ function App() {
     Cookies.remove("UserID");
     Cookies.remove("vehicleId");
     Cookies.remove("UserData");
+    Cookies.remove("UserName");
+    Cookies.remove("admin")
     window.location.reload();
   };
   const cookieCheck = Cookies.get("email");
-  if (cookieCheck) {
+  const adminCheck = Cookies.get("admin");
+  if (adminCheck) {
+    return (
+      <>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="home">GIS</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <a className="nav-link" href="userlist">Users List</a>
+              </li>
+              <li>
+                <span className='navbar-text'>
+                  <button type="button" className="btn btn-sm btn-outline-danger mr-3 float-right" onClick={logOutFromDashBoard}>Logout</button>
+                </span>
+              </li>
+            </ul>
+
+
+          </div>
+        </nav>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/policy' element={<Policy />}></Route>
+            <Route path='/add-on-policy' element={<AddOnPolicy />}></Route>
+            <Route path='/home' element={<Home />}></Route>
+            <Route path='/admindashboard' element={<Admin />}></Route>
+            <Route path='/userlist' element={<UserList />}></Route>
+            <Route path='/vehiclelist' element={<VehicleList />}></Route>
+            <Route path='/vehicleupdate/:id' element={<VehicleUpdate />}></Route>
+            <Route path='/vehicledelete/:id' element={<VehicleDelete />}></Route>
+
+          </Routes>
+        </BrowserRouter>
+      </>
+    );
+  }
+  else if (cookieCheck) {
     return (
       <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -75,9 +122,10 @@ function App() {
             <Route path='/pdfUpload' element={<PdfUploader />}></Route>
             <Route path='/pdfDownload' element={<PdfDownloader />}></Route>
             <Route path='/applypolicy/:id' element={<InsuranceApply />}></Route>
+            <Route path='/viewpolicy/:id' element={<ViewInsurance />}></Route>
           </Routes>
         </BrowserRouter>
-        <marquee direction="right"><Car /></marquee>
+        {/* <marquee direction="right"><Car /></marquee> */}
       </>
     );
   }

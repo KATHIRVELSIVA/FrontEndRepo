@@ -19,6 +19,7 @@ body {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4));
 }
 
+/* 
 body:hover {
     animation-name: background;
     animation-duration: 4s;
@@ -48,4 +49,4 @@ h1 {
     100% {
         background-color: #FF97C1;
     }
-}
+} */

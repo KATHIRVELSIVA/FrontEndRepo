@@ -26,8 +26,15 @@ export function Login() {
                         alert("User Logged in successfully..");
                         Cookies.set("email", values.email);
                         Cookies.set("password", values.password);
-                        navigate('/dashboard');
-                        window.location.reload();
+                        if (res.data["admin"] === true) {
+                            Cookies.set("admin", "admin");
+                            navigate('/admindashboard');
+                            window.location.reload();
+                        }
+                        else {
+                            navigate('/dashboard');
+                            window.location.reload();
+                        }
                     }
                     else {
                         alert("Invalid Credentials");
@@ -61,11 +68,15 @@ export function Login() {
                 <div className="mb-3">
                     <label>Password</label>
                     <input
-                        type="password"
+                        type="Password"
                         className="form-control"
                         placeholder="Enter password"
-                        onChange={e => setValues({ ...values, password: e.target.value })}
+                        maxLength={14}
+                        minLength={8}
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                         required
+                        onChange={e => setValues({ ...values, password: e.target.value })}
                     />
                 </div>
 

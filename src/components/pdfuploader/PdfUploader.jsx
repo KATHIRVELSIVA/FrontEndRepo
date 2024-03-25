@@ -14,7 +14,7 @@ const PdfUploader = () => {
         try {
             const formData = new FormData();
             formData.append('file', selectedFile);
-
+            debugger
             const response = await axios.post('https://localhost:44319/api/PdfDocument?id=' + Cookies.get("UserID"),
                 formData, {
                 headers: {

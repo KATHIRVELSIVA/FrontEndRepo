@@ -17,7 +17,8 @@ export function InsuranceApply() {
         status: "Applied",
         applyId: 0,
         policyID: 0,
-        addOnPolicyID: 0
+        addOnPolicyID: 0,
+        vehicleId: id
     })
 
     const navigate = useNavigate();
@@ -73,7 +74,7 @@ export function InsuranceApply() {
 
                 <div className="mb-3">
                     <label>Policy</label>
-                    <select className="form-control" value={values.policyID} onChange={e => setValues({ ...values, policyID: e.target.value })}>
+                    <select className="form-control" required value={values.policyID} onChange={e => setValues({ ...values, policyID: e.target.value })}>
                         {
                             data.map((d) => (
                                 <option value={d.policyID}>{d.policyName} - {d.policyPrice}</option>
@@ -83,7 +84,7 @@ export function InsuranceApply() {
                 </div>
                 <div className="mb-3">
                     <label>Add On Policy</label>
-                    <select className="form-control" value={values.addOnPolicyID} onChange={e => setValues({ ...values, addOnPolicyID: e.target.value })}>
+                    <select className="form-control" required value={values.addOnPolicyID} onChange={e => setValues({ ...values, addOnPolicyID: e.target.value })}>
                         {
                             policy.map((d) => (
                                 <option value={d.addOnPolicyID}>{d.addOnPolicyName} - {d.addOnPrice}</option>
