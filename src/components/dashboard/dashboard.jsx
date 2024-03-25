@@ -14,6 +14,7 @@ export function Dashboard() {
     const [policy, setPolicy] = useState([]);
     const [insurance, setInsurance] = useState([]);
     useEffect(() => {
+        Cookies.remove("vehicleID");
         var UserID = Cookies.get("UserID");
         axios.get('https://localhost:44319/api/Vehicle')
             .then(res => {
@@ -78,7 +79,7 @@ export function Dashboard() {
                         </div>
 
                         {
-                            data ? data.filter((item) => item.userID == Cookies.get("UserID") && item.status == false)
+                            data ? data.filter((item) => item.userID == Cookies.get("UserID") && item.status === false)
                                 .map(item => (
                                     <div key={item.id === Cookies.get('userID')}>
                                         <Card className='m-5 p-3'>
@@ -88,7 +89,7 @@ export function Dashboard() {
                                                     <p>{item.vehicleName} </p>
                                                     <p>{item.vehicleType}</p>
                                                     <p>{item.location}</p>
-                                                    {item.status == true
+                                                    {item.status === true
                                                         ?
                                                         <Link to={`/applypolicy/${item.vehicleId}`} onClick={Cookies.set('vehicleId', item.vehicleId)} className="btn btn-primary m-1">
                                                             Apply Now
@@ -136,7 +137,7 @@ export function Dashboard() {
                                                     <td>{d.yearOfMake}</td>
                                                     <td>{d.idVvalue}</td>
                                                     {
-                                                        d.status == false
+                                                        d.status === false
                                                             ?
                                                             <td>
                                                                 <Link to={`/viewpolicy/${d.vehicleId}`} onClick={Cookies.set('vehicleId', d.vehicleId)} className="btn btn-success m-1">Applied</Link>

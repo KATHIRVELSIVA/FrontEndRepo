@@ -12,15 +12,15 @@ export function VehicleList() {
     }, [])
     return (
         <>
-            <div>
+            <div className="container">
                 <h2>List of Vehicles</h2>
-                <table className="table table-striped">
+                <table className="table table-hover p-3">
                     <thead>
                         <tr className='text-uppercase justify-content-center'>
                             <th>Vehicle No</th>
                             <th>Vehicle Name</th>
                             <th>Vehicle Type</th>
-                            <th>Actions</th>
+                            <th className="d-flex justify-content-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,7 +32,7 @@ export function VehicleList() {
                                         <td>{d.vehicleNo}</td>
                                         <td>{d.vehicleName}</td>
                                         <td>{d.vehicleType}</td>
-                                        <td>
+                                        <td className="d-flex justify-content-center">
                                             <Link to={`/vehicleupdate/${d.vehicleId}`} className="btn btn-primary m-1">Edit</Link>
                                             <Link to={`/vehicledelete/${d.vehicleId}`} className="btn btn-danger m-1">Delete</Link>
                                         </td>

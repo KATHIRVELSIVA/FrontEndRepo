@@ -9,6 +9,7 @@ export function ViewInsurance() {
     const [data, setData] = useState([]);
     const [insurance, setInsurance] = useState([]);
     const [policy, setPolicy] = useState([]);
+    const [addonpolicy, setAddOnPolicy] = useState([]);
     const { id } = useParams();
     useEffect(() => {
         var UserID = Cookies.get("UserID");
@@ -20,7 +21,7 @@ export function ViewInsurance() {
             .catch(err => console.log(err));
         axios.get('https://localhost:44319/api/AddOnPolicy')
             .then(res => {
-                setPolicy(res.data)
+                setAddOnPolicy(res.data)
                 console.log(res.data)
             })
             .catch(err => console.log(err));
@@ -30,7 +31,12 @@ export function ViewInsurance() {
                 console.log(res.data)
             })
             .catch(err => console.log(err));
-
+        axios.get('https://localhost:44319/api/Policy')
+            .then(res => {
+                setPolicy(res.data)
+                console.log(res.data)
+            })
+            .catch(err => console.log(err));
     }, [])
 
     return (
@@ -47,28 +53,69 @@ export function ViewInsurance() {
                         <div className="text-uppercase">{data.vehicleName}</div>
                     </div>
                     <div className="card-footer">
+                        {/* {
+                            insurance
+                                .filter((ins) => ins.vehicleId == data.vehicleID)
+                                .map(ins => (
+                                    <div key={ins.addOnPolicyID}>
+                                        
+                                        {
+                                            policy
+                                                .filter((item) => item.addOnPolicyID == ins.addOnPolicyID)
+                                                .map(d => (
+                                                    <div key={d.addOnPolicyID === ins.addOnPolicyID}>
+                                                        {d.addOnPolicyName} - {d.addOnPrice}
+                                                        {
+                                                            addonpolicy
+                                                                .filter((item) => item.policyID == ins.policyID)
+                                                                .map(d => (
+                                                                    <div key={d.addOnPolicyID === ins.addOnPolicyID}>
+                                                                        {d.policyName} - {d.policyPrice}
+
+                                                                    </div>
+                                                                ))
+                                                        }
+                                                    </div>
+                                                ))
+                                        }
+                                    </div>
+                                )
+
+                                )
+                        } */}
 
                         {
-                            policy
+                            insurance
+                                .filter((item) => item.vehicleID == data.vehicleId)
                                 .map(item => (
-                                    <div key={item.addOnPolicyID} className="div">
-                                        {item.addOnPolicyName}
+                                    <div key={item.applyId}>
                                         {
-                                            insurance
-                                                .map(ins => (
-                                                    <div key={ins.addOnPolicyID == item.addOnPolicyID}>
-                                                        {ins.addOnPolicyName}
+                                            policy
+                                                .filter((pol) => pol.policyID === item.policyID)
+                                                .map(pol => (
+                                                    <div key={pol.policyID}>
+                                                        {pol.policyName} - {pol.policyPrice}
                                                     </div>
-                                                )
-
-                                                )
+                                                ))
                                         }
+                                        {
+                                            addonpolicy
+                                                .filter((pol) => pol.addOnPolicyID === item.addOnPolicyID)
+                                                .map(addpol => (
+                                                    <div key={addpol.addOnPolicyID}>
+                                                        {addpol.addOnPolicyName} - {addpol.addOnPrice}
+                                                    </div>
+                                                ))
+                                        }
+
                                     </div>
                                 ))
                         }
+                        <button className="btn btn-success"> Claim</button>
                     </div>
+
                 </div>
-            </div>
+            </div >
         </>
     )
 }

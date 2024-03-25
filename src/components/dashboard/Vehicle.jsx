@@ -31,7 +31,8 @@ export function Vehicle() {
                         type="text"
                         className="form-control text-uppercase"
                         placeholder="AB XX CD XXXX"
-                        required
+                        aria-required
+                        max={10}
                         onChange={e => setValues({ ...values, vehicleNo: e.target.value })}
                     />
                 </div>

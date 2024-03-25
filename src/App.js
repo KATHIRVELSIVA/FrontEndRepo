@@ -10,7 +10,6 @@ import { Dashboard } from './components/dashboard/dashboard';
 import { Vehicle } from './components/dashboard/Vehicle';
 import { VehicleUpdate } from './components/Vehicle/VehicleUpdate';
 import { VehicleDelete } from './components/Vehicle/VehicleDelete';
-import { Car } from './components/Vehicle/car/car';
 import PdfUploader from './components/pdfuploader/PdfUploader';
 import PdfDownloader from './components/pdfuploader/PdfDownloader';
 import { InsuranceApply } from './components/insuranceapply/InsuranceApply';
@@ -18,6 +17,12 @@ import { ViewInsurance } from './components/insuranceapply/ViewInsurance';
 import { Admin } from './components/admin/Admin';
 import { UserList } from './components/admin/UserList';
 import { VehicleList } from './components/admin/VehicleList';
+import { AddPolicy } from './components/admin/policy/Addpolicy';
+import { PolicyUpdate } from './components/admin/policy/UpdatePolicy';
+import { DeletePolicy } from './components/admin/policy/DeletePolicy';
+import { AddaddOnPolicy } from './components/admin/addonpolicy/AddAddOnPolicy';
+import { AddOnUpdate } from './components/admin/addonpolicy/AddOnUpdate';
+import { AddOnDelete } from './components/admin/addonpolicy/AddOnDelete';
 
 function App() {
 
@@ -44,8 +49,15 @@ function App() {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <a className="nav-link" href="userlist">Users List</a>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Services
+                </a>
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a className="dropdown-item" href="userlist">User List</a>
+                  <div className="dropdown-divider"></div>
+                  <a className="dropdown-item" href="vehiclelist">Vehicle List</a>
+                </div>
               </li>
               <li>
                 <span className='navbar-text'>
@@ -67,6 +79,12 @@ function App() {
             <Route path='/vehiclelist' element={<VehicleList />}></Route>
             <Route path='/vehicleupdate/:id' element={<VehicleUpdate />}></Route>
             <Route path='/vehicledelete/:id' element={<VehicleDelete />}></Route>
+            <Route path='/addpolicy' element={<AddPolicy />}></Route>
+            <Route path='/add-add-onpolicy' element={<AddaddOnPolicy />}></Route>
+            <Route path='/policyupdate/:id' element={<PolicyUpdate />}></Route>
+            <Route path='/add-add-onpolicyupdate/:id' element={<AddOnUpdate />}></Route>
+            <Route path='/policydelete/:id' element={<DeletePolicy />}></Route>
+            <Route path='/add-add-onpolicydelete/:id' element={<AddOnDelete />}></Route>
 
           </Routes>
         </BrowserRouter>
@@ -90,7 +108,7 @@ function App() {
                 <a className="nav-link" href="dashboard">Dashboard</a>
               </li>
               <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Services
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">

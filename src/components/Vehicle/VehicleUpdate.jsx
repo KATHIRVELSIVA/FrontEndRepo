@@ -36,10 +36,12 @@ export function VehicleUpdate() {
                 <div className="mb-3 " >
                     <label>Vehicle Number</label>
                     <input
+                        required
                         type="text "
                         className="form-control text-uppercase"
                         placeholder="AB XX CD XXXX"
-                        required
+
+                        maxLength={10}
                         value={values.vehicleNo}
                         onChange={e => setValues({ ...values, vehicleNo: e.target.value })}
                     />

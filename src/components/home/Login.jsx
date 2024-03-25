@@ -23,15 +23,16 @@ export function Login() {
             .then(res => {
                 if (res.data["emailstatus"] === true) {
                     if (res.data["passwordstatus"] === true) {
-                        alert("User Logged in successfully..");
                         Cookies.set("email", values.email);
                         Cookies.set("password", values.password);
                         if (res.data["admin"] === true) {
+                            alert("Admin Logged in successfully...");
                             Cookies.set("admin", "admin");
                             navigate('/admindashboard');
                             window.location.reload();
                         }
                         else {
+                            alert("User Logged in successfully..");
                             navigate('/dashboard');
                             window.location.reload();
                         }

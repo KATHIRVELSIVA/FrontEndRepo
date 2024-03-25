@@ -9,7 +9,7 @@ export function InsuranceApply() {
     const [policy, setPolicy] = useState([])
     const [cars, setCars] = useState({
         userID: Cookies.get("UserID"),
-        status: true,
+        status: Cookies.get("vehicleID"),
         vehicleId: id
     })
     const [values, setValues] = useState({
@@ -46,7 +46,13 @@ export function InsuranceApply() {
             .then(res => {
                 console.log(res);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                if (err.response.status === 500) {
+                    alert("Already vehicle is registered for insurance");
+                }
+                console.log(err)
+            });
+        // debugger
         axios.put('https://localhost:44319/api/Vehicle/' + id, {
             "vehicleId": id,
             "vehicleNo": cars.vehicleNo,
@@ -63,8 +69,9 @@ export function InsuranceApply() {
 
             })
             .catch(err => console.log(err));
+        // debugger
         navigate('/dashboard');
-        window.location.reload('');
+        // window.location.reload('');
     }
     return (
         <>

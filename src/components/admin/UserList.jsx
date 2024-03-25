@@ -12,15 +12,15 @@ export function UserList() {
     }, [])
     return (
         <>
-            <div>
+            <div className="container p-3">
                 <h2>List of Users</h2>
-                <table className="table table-striped">
+                <table className="table table-hover p-3">
                     <thead>
                         <tr className='text-uppercase justify-content-center'>
                             <th>UserName</th>
                             <th>Email ID</th>
                             <th>Phone Number</th>
-                            <th>Actions</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -32,10 +32,7 @@ export function UserList() {
                                         <td>{d.userName}</td>
                                         <td>{d.emailID}</td>
                                         <td>{d.phoneNo}</td>
-                                        <td>
-                                            <p className="btn btn-primary m-1" id={d.userId}>Edit</p>
-                                            <p className="btn btn-danger m-1" id={d.userId}>Delete</p>
-                                        </td>
+                                      
                                     </tr>
                                 ))
                         }
